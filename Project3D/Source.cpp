@@ -86,7 +86,7 @@ void processSpecialKeys(int key, int xx, int yy) {
 	}
 }
 
-void display(void)
+void renderScene(void)
 {
 	/*  clear all pixels  */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -118,8 +118,8 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("hello");
 
-	glutDisplayFunc(display);
-	glutIdleFunc(display);
+	glutDisplayFunc(renderScene);
+	glutIdleFunc(renderScene);
 	glutReshapeFunc(reshape);
 	glutSpecialFunc(processSpecialKeys);
 	glEnable(GL_DEPTH_TEST);
