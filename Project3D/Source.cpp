@@ -4,8 +4,10 @@
 #include <math.h>
 
 float angulo = 0.0f;
-float lx = 0.0f, lz = -1.0f;
-float x = 0.0f, z = 5.0f;
+float xx = 0.0f
+float zz = -1.0f;
+float x = 0.0f
+float z = 5.0f;
 
 
 
@@ -67,21 +69,21 @@ void processSpecialKeys(int key, int xx, int yy) {
 	switch (key) {
 	case GLUT_KEY_LEFT:
 		angulo -= 0.02f;
-		lx = sin(angulo);
-		lz = -cos(angulo);
+		xx = sin(angulo);
+		zz = -cos(angulo);
 		break;
 	case GLUT_KEY_RIGHT:
 		angulo += 0.02f;
-		lx = sin(angulo);
-		lz = -cos(angulo);
+		xx = sin(angulo);
+		zz = -cos(angulo);
 		break;
 	case GLUT_KEY_UP:
-		x += lx * fraction;
-		z += lz * fraction;
+		x += xx * fraction;
+		z += zz * fraction;
 		break;
 	case GLUT_KEY_DOWN:
-		x -= lx * fraction;
-		z -= lz * fraction;
+		x -= xx * fraction;
+		z -= zz * fraction;
 		break;
 	}
 }
@@ -92,7 +94,7 @@ void renderScene(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
-	gluLookAt(x, 1.0f, z, x + lx, 1.0f, z + lz, 0.0f, 1.0f, 0.0f);
+	gluLookAt(x, 1.0f, z, x + xx, 1.0f, z + zz, 0.0f, 1.0f, 0.0f);
 
 	drawFloor();
 	drawImage();
@@ -103,11 +105,9 @@ void renderScene(void)
 void reshape(int w, int h) {
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
 	gluPerspective(65.0, (GLfloat)w / (GLfloat)h, 1.0, 20.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glTranslatef(0.0, 0.0, -5.0);
 }
 
 int main(int argc, char** argv)
